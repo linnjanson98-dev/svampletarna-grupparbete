@@ -1,7 +1,8 @@
 let allPairs = [];
 let index = 0;
 
-const button = document.getElementById("button");
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
 
 function displayList() {
     console.log(allPairs[index]);
@@ -40,4 +41,14 @@ function nextPair() {
     }
 
 }
-button.addEventListener("click", nextPair); 
+nextButton.addEventListener("click", nextPair); 
+
+function prevPair() {
+
+    if (index > 0) {
+        index -= 2;
+        displayList();
+    }
+}
+
+prevButton.addEventListener("click", prevPair);
