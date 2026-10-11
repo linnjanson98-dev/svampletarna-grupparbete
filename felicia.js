@@ -12,6 +12,8 @@ const rightList = document.getElementById("rightIdentify");
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 
+const somethingHappened = document.getElementById("somethingHappened");
+
 
 
 async function getList() { // bygger en funktion för att kunna hämta min json fil & göra om till JavaScript objekt
@@ -32,6 +34,7 @@ async function getList() { // bygger en funktion för att kunna hämta min json 
 
     } catch (error) {
         console.error("Fel:", error);
+        somethingHappened.textContent = "Något gick fel när sidan lästes in, försök igen senare.";
     }
 }
 
