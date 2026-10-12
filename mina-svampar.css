@@ -30,10 +30,9 @@
 /* Grunden för hela sidans kropp */
 body {
     background-color: var(--bg-salvia);
-    /* Använder variabeln vi skapade ovan */
     color: var(--text-brun);
     font-family: sans-serif;
-    /* Webbläsarens standardtypsnitt, ändra om ni har ett specifikt */
+    /* Webbläsarens standardtypsnitt */
     line-height: 1.6;
     /* Gör texten lite lättare att läsa */
     display: flex;
@@ -72,22 +71,18 @@ main header {
     align-items: center;
     /* Centrerar dem vertikalt mot varandra */
     margin-bottom: 2rem;
-    /* Lite luft ner till innehållet under */
     gap: 1rem;
-    /* Skapar ett minsta avstånd om de hamnar på samma rad */
 }
 
 /* Styling för knappen "Töm sparade svampar" */
 #clear-button {
     background-color: var(--accent-gron);
     color: var(--bg-salvia);
-    /* Ljus text på mörkgrön bakgrund för bra kontrast */
     border: none;
     padding: 0.8rem 1.2rem;
     font-size: 1rem;
     cursor: pointer;
     border-radius: 4px;
-    /* Lätt rundade hörn */
     font-weight: bold;
 }
 
@@ -106,7 +101,6 @@ main header {
     border: 2px solid var(--border-khaki);
     padding: 3rem 1.5rem;
     text-align: center;
-    /* Centrerar texten och knappen inuti rutan */
     border-radius: 8px;
     max-width: 600px;
     /* Begränsar bredden så rutan inte blir extremt bred på stor skärm */
@@ -139,23 +133,21 @@ main header {
    6. SVAMPRUTNÄTET (CSS Grid)
    ========================================= */
 
-/* Behållaren för alla svampkort (vår <ul>) */
+/* Behållaren för alla svampkort (vår <section>) */
 #card-container {
     display: grid;
     /* auto-fit och minmax skapar automatiskt så många kolumner som får plats. 
        Är skärmen smal (mobil) blir det 1 kolumn, är den bred blir det fler. */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    /* Avstånd mellan korten */
-    list-style: none;
-    /* Tar bort punktlistans standard-prickar */
+    /* List-style är borttagen här eftersom vi bytt till section i HTML! */
 }
 
 /* =========================================
    7. SVAMPKORTEN (Utseende)
    ========================================= */
 
-/* Själva kortet (<article> som vi ska skapa i JavaScript) */
+/* Själva kortet (<article> som vi skapar i JavaScript) */
 #card-container article {
     background-color: var(--card-beige);
     border: 1px solid var(--border-khaki);
@@ -167,17 +159,19 @@ main header {
     /* Lägger bild, rubrik och text rakt under varandra */
 }
 
-/* Bilden inuti kortet */
-#card-container img {
+/* Bilden inuti kortet. 
+   Lade till 'article' i selektorn för att garantera att den träffar rätt element. */
+#card-container article img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 200px !important;
+    object-fit: cover !important;
     /* Beskär bilden snyggt så den fyller ytan utan att tryckas ihop */
     border-bottom: 1px solid var(--border-khaki);
 }
 
 /* Texten inuti kortet */
-#card-container h2 {
+#card-container h2,
+#card-container h3 {
     padding: 1rem 1rem 0.5rem 1rem;
     font-size: 1.3rem;
     margin: 0;
@@ -186,4 +180,50 @@ main header {
 #card-container p {
     padding: 0 1rem 1rem 1rem;
     margin: 0;
+}
+
+/* =========================================
+   8. ETIKETTER (Badges för ätlighet)
+   ========================================= */
+
+/* Grundinställning för alla etiketter */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Gör alla bokstäver till VERSALER som i din skiss */
+    margin: 0.5rem 1rem 1rem 1rem;
+    width: fit-content;
+    /* Gör så att etiketten bara blir så bred som texten inuti */
+}
+
+/* Modifiering för ÄTLIG (Grön ram och text) */
+.badge-atlig {
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+    background-color: transparent;
+}
+
+/* Modifiering för GIFTIG (Röd ram och text) */
+.badge-giftig {
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    background-color: transparent;
+}
+
+/* Modifiering för DÖDLIGT GIFTIG (Röd fylld bakgrund, vit text) */
+.badge-dodlig {
+    color: #ffffff;
+    background-color: #d32f2f;
+    border: 1px solid #d32f2f;
+}
+
+/* Modifiering för BLANDAD (Orange ram och text) */
+.badge-blandad {
+    color: #e65100;
+    border: 1px solid #e65100;
+    background-color: transparent;
 }

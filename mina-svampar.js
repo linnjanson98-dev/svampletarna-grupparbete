@@ -11,14 +11,14 @@ const clearButton = document.getElementById("clear-button");
 function getSavedMushrooms() {
     const savedData = localStorage.getItem("savedMushrooms");
     if (savedData) {
-        return JSON.parse(savedData); // Här ligger nu Linns hela objekt
+        return JSON.parse(savedData);
     } else {
         return [];
     }
 }
 
 // ==========================================
-// 3. KONTROLLERA SYNLIGHET (Visa tomt eller listan)
+// 3. KONTROLLERA SYNLIGHET
 // ==========================================
 function checkVisibility(savedMushroomsList) {
     if (savedMushroomsList.length === 0) {
@@ -36,16 +36,10 @@ function checkVisibility(savedMushroomsList) {
 // 4. BYGG SVAMPKORTEN PÅ SIDAN
 // ==========================================
 function renderSavedMushrooms() {
-    // 1. Hämta Linns sparade svampar
     const savedMushrooms = getSavedMushrooms();
-
-    // 2. Bestäm vad som ska visas (Tomt läge eller kort)
     checkVisibility(savedMushrooms);
-
-    // 3. Töm listan innan vi bygger nya kort (så vi slipper dubbletter om sidan uppdateras)
     cardContainer.innerHTML = "";
 
-    // 4. Loopa igenom varje sparad svamp och skapa HTML
     savedMushrooms.forEach(svamp => {
         const article = document.createElement("article");
 
@@ -53,12 +47,11 @@ function renderSavedMushrooms() {
         swedishName.textContent = svamp.svenskt_namn;
         article.appendChild(swedishName);
 
-        const latinName = document.createElement("h3"); // Kör h3 här för designens skull
+        const latinName = document.createElement("h3");
         latinName.textContent = svamp.latinskt_namn;
         article.appendChild(latinName);
 
         const imageMushroom = document.createElement("img");
-        // Använder samma logik för sökväg som Linn gjorde
         imageMushroom.src = "./svampar/" + svamp.bild.replace("./", "");
         imageMushroom.alt = "Bild av " + svamp.svenskt_namn;
         article.appendChild(imageMushroom);
@@ -71,20 +64,45 @@ function renderSavedMushrooms() {
         locationMushroom.textContent = svamp.fyndplats;
         article.appendChild(locationMushroom);
 
-        // Stoppa in det färdiga kortet i vår grid
+        // --- HÄR ÄR KODEN SOM SKAPAR ETIKETTEN ---
+        const badge = document.createElement("span");
+        badge.classList.add("badge");
+
+        const status = svamp.atlighet;
+
+        if (status === "Ätlig") {
+            badge.textContent = "✔ Ätlig";
+            badge.classList.add("badge-atlig");
+        } else if (status === "Giftig") {
+            badge.textContent = "⚠ Giftig";
+            badge.classList.add("badge-giftig");
+        } else if (status === "Dödligt giftig") {
+            badge.textContent = "⚠ Dödligt giftig";
+            badge.classList.add("badge-dodlig");
+        } else {
+            badge.textContent = "⚖ Blandad";
+            badge.classList.add("badge-blandad");
+        }
+
+        article.appendChild(badge);
+        // ------------------------------------------
+
         cardContainer.appendChild(article);
     });
 }
 
 // ==========================================
-// 5. TÖM-KNAPPEN (Radera allt)
+// 5. TÖM-KNAPPEN (Radera allt, med bekräftelse)
 // ==========================================
 clearButton.addEventListener("click", () => {
-    // Ta bort nyckeln helt från minnet
-    localStorage.removeItem("savedMushrooms");
+    // Fråga användaren först! Returnerar true (OK) eller false (Avbryt)
+    const isSure = window.confirm("Är du säker på att du vill ta bort alla dina sparade svampar?");
 
-    // Rita om sidan (vilket nu kommer visa tomt-läget eftersom minnet är borta)
-    renderSavedMushrooms();
+    // Om användaren klickade "OK", töm minnet och rita om sidan
+    if (isSure) {
+        localStorage.removeItem("savedMushrooms");
+        renderSavedMushrooms();
+    }
 });
 
 // ==========================================

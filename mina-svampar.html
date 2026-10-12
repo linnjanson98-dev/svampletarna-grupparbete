@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mina svampar – Svampletarna</title>
     <link rel="stylesheet" href="mina-svampar.css">
-
-    <!-- storage.js (gemensamma funktioner för localStorage) läggs in här i steg 2, före raden nedan -->
-
     <script src="mina-svampar.js" defer></script>
 </head>
 
@@ -37,9 +34,10 @@
             <button type="button" id="clear-button">Töm sparade svampar</button>
         </header>
 
-        <!-- Lista för korten. Tom nu: JavaScript lägger in en <li> med ett <article> per sparad svamp.
-             CSS Grid lägger korten i kolumner. -->
-        <ul id="card-container"></ul>
+        <!-- Behållare för korten. 
+             Ändrad från en lista (<ul>) till en sektion (<section>) för att koden ska vara giltig HTML. 
+             JavaScript lägger in ett <article> per sparad svamp här inuti. -->
+        <section id="card-container"></section>
 
         <!-- Visas när inga svampar är sparade. JavaScript gömmer och visar blocket. -->
         <section id="empty-state">
