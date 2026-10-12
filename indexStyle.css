@@ -1,4 +1,4 @@
-section{
+/*section{
     border: 1px solid black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -17,8 +17,7 @@ article img{
     min-width: 0;
 }
 
-
 article p{
     padding: 10px;
     min-width: 0;
-}
+}*/

@@ -1,9 +1,12 @@
 let sectionRef;
+const savedMushrooms = [];
 
 function init(){
     //Ladda in sidan och starta 
     sectionRef = document.querySelector("section");
+    
     fetchData();
+    //localStorage.clear();
 }
 
 window.onload = init;
@@ -24,7 +27,7 @@ async function fetchData(){
 function createArticle(data){
     //Loopa svampar.json och skapa artiklar för varje svamp
     //Möjligtvis en function för att skapa elementen? 
-    //Även add event listners för att kunna spara svampar på sin sida
+    //Även add event listeners för att kunna spara svampar på sin sida
     data.svampar.forEach(svamp => {
         const article = document.createElement("article");
         //Skapa element för svampens namn, bild, beskrivning och fyndplats.
@@ -58,11 +61,31 @@ function createElement(elementType, textContent){
 
 function saveArticleButton(svamp, article){
     const saveButton = document.createElement("button");
-    saveButton.textContent = "Spara";
+    let savedMushrooms = JSON.parse(localStorage.getItem("savedMushrooms")) || [];
+    if (!checkIfSaved(svamp, savedMushrooms)) {
+        saveButton.textContent = "Spara";
+    } else {
+        saveButton.textContent = "Sparad";
+    }
     article.appendChild(saveButton);
-   /*
-   Kanske annan lösning här måste fungera med sidan av sparade svampar och med Zouhir. 
-   saveButton.addEventListener("click", () => {
-        localStorage.setItem(`svamp_${svamp.id}`, JSON.stringify(svamp));
-    }); */ 
-} 
+
+    saveButton.addEventListener("click", () => {
+        if (!checkIfSaved(svamp, savedMushrooms)) {
+            savedMushrooms.push(svamp);
+            localStorage.setItem("savedMushrooms", JSON.stringify(savedMushrooms));
+            saveButton.textContent = "Sparad";
+        }
+       /* else{
+            saveButton.textContent = "Sparad";
+        } behövs nog inte här eftersom jag redan gör så att det står "Sparad" innan add event listener,
+          eller ska den ändra till "Redan Sparad"  */
+
+    });
+}
+
+function checkIfSaved(svamp, savedMushrooms){
+    if (savedMushrooms.some(saved => saved.latinskt_namn === svamp.latinskt_namn)) {
+        return true;
+    }
+    return false;
+}
