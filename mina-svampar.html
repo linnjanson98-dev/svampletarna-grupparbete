@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mina svampar – Svampletarna</title>
+    <link rel="stylesheet" href="mina-svampar.css">
+    <script src="mina-svampar.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Svampletarna</h1>
+
+        <!-- nav = navigationsmeny. aria-label ger menyn ett namn för skärmläsare -->
+        <nav aria-label="Huvudmeny">
+            <ul>
+                <li><a href="index.html">Alla Svampar</a></li>
+                <!-- aria-current="page" markerar att det är den här sidan vi är på just nu -->
+                <li><a href="mina-svampar.html" aria-current="page">Sparade Svampar</a></li>
+                <!-- svampguide.html är en platshållare tills Felicia har bestämt filens namn -->
+                <li><a href="svampguide.html">Svampguide</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Huvud för just det här innehållet: rubrik och knapp. Flexbox lägger dem på en rad i CSS. -->
+        <header>
+            <h1>Mina svampar</h1>
+
+            <!-- type="button": knappen skickar inget formulär. id används av JavaScript senare. -->
+            <button type="button" id="clear-button">Töm sparade svampar</button>
+        </header>
+
+        <!-- Behållare för korten. 
+             Ändrad från en lista (<ul>) till en sektion (<section>) för att koden ska vara giltig HTML. 
+             JavaScript lägger in ett <article> per sparad svamp här inuti. -->
+        <section id="card-container"></section>
+
+        <!-- Visas när inga svampar är sparade. JavaScript gömmer och visar blocket. -->
+        <section id="empty-state">
+            <h2>Du har inte hittat några svampar än</h2>
+            <p><a href="index.html">Till svampar</a></p>
+        </section>
+    </main>
+
+    <!-- Sidfot -->
+    <footer>
+        <p>Grupp 4: Zouhir</p>
+    </footer>
+</body>
+
+</html>
