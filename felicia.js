@@ -84,19 +84,27 @@ function displayList() {
 
 }
 
-function nextPair() {
+/* bygger en funktion som visar två stycken par från json filen åt gången, när man klickar på knappen nextButton så kommer index öka
+med 2 och visa nästa två par. Om index är lika med eller större än längden på allPairs minus 2 så kommer knappen inte fungera längre, 
+alltså ingenting händer när man trycker. */
+function nextPair() { 
     if (index < allPairs.length - 2) {
         index += 2;
         displayList();
     }
 }
-nextButton.addEventListener("click", nextPair);
 
+/* lägger till en eventlyssnare till min knapp som jag byggt i html & som anropar funktionen nextPair när man klickar på den. */
+nextButton.addEventListener("click", nextPair); 
 
+/* bygger en funktion som gör att man kan gå tillbaka till föregående sida. Så när man klickar på knappen prevButton så går man tillbaka två par. 
+När index är 0 eller mindre så kommer knappen inte fungera längre, 
+alltså ingenting händer när man trycker. */
 function prevPair() {
     if (index > 0) {
         index -= 2;
         displayList();
     }
 }
-prevButton.addEventListener("click", prevPair);
+/* lägger till en eventlyssnare till min knapp som jag byggt i html & som anropar funktionen prevPair när man klickar på den. */
+prevButton.addEventListener("click", prevPair); 
