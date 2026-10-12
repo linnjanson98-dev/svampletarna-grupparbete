@@ -78,7 +78,7 @@ function saveArticleButton(svamp, article){
        /* else{
             saveButton.textContent = "Sparad";
         } behövs nog inte här eftersom jag redan gör så att det står "Sparad" innan add event listener,
-          eller ska den ändra till "Redan Sparad"  */
+          eller ska den ändra till "Redan Sparad" ? */
 
     });
 }
