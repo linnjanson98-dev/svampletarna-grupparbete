@@ -1,229 +1,82 @@
-/* =========================================
-   1. CSS-VARIABLER (Vår färgpalett)
-   ========================================= */
-:root {
-    --bg-salvia: #E8EDE1;
-    /* Sidans bakgrund */
-    --text-brun: #33301A;
-    /* All vanlig text */
-    --card-beige: #DCD3BA;
-    /* Korten och tomt-läge-rutan */
-    --accent-gron: #5A6A18;
-    /* Header, footer, knappar */
-    --focus-orange: #F0AE32;
-    /* Fokus och markerade länkar */
-    --border-khaki: #807A5E;
-    /* Kantlinjer */
-}
-
-/* =========================================
-   2. GLOBAL RESET & GRUNDINSTÄLLNINGAR
-   ========================================= */
-
-/* Nollställ marginaler och paddings för alla element */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #d9d2b8;
 }
 
-/* Grunden för hela sidans kropp */
-body {
-    background-color: var(--bg-salvia);
-    color: var(--text-brun);
-    font-family: sans-serif;
-    /* Webbläsarens standardtypsnitt */
-    line-height: 1.6;
-    /* Gör texten lite lättare att läsa */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* Gör så att sidan alltid är minst lika hög som skärmen */
+h1{
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    color: #5a6618;
 }
 
-/* =========================================
-   3. TYPOGRAFI (Rubriker etc.)
-   ========================================= */
-h1,
-h2,
-h3 {
+nav{
     margin-bottom: 1rem;
 }
 
-/* =========================================
-   4. HUVUDINNEHÅLL & SIDHUVUD (Main & Header)
-   ========================================= */
-
-/* Ge huvudinnehållet lite marginal från skärmens kanter */
-main {
-    padding: 1.5rem;
-    flex-grow: 1;
-    /* Magin! Detta pressar ner din footer till botten av skärmen */
+nav ul {
+    list-style-type: none;
 }
 
-/* Sidhuvudet inuti main: Flexbox för att lägga rubrik och knapp bredvid varandra */
-main header {
-    display: flex;
-    flex-wrap: wrap;
-    /* Tillåter elementen att hoppa ner på ny rad om skärmen är jättesmal */
-    justify-content: space-between;
-    /* Skjuter isär rubriken och knappen till varsin kant */
-    align-items: center;
-    /* Centrerar dem vertikalt mot varandra */
-    margin-bottom: 2rem;
-    gap: 1rem;
-}
-
-/* Styling för knappen "Töm sparade svampar" */
-#clear-button {
-    background-color: var(--accent-gron);
-    color: var(--bg-salvia);
-    border: none;
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* Fokus-effekt för tillgänglighet (när man navigerar med tangentbordet) */
-#clear-button:focus-visible {
-    outline: 3px solid var(--focus-orange);
-    outline-offset: 2px;
-}
-
-/* =========================================
-   5. DET TOMMA LÄGET (Empty State)
-   ========================================= */
-
-#empty-state {
-    background-color: var(--card-beige);
-    border: 2px solid var(--border-khaki);
-    padding: 3rem 1.5rem;
+a {
+    display: block;
     text-align: center;
-    border-radius: 8px;
-    max-width: 600px;
-    /* Begränsar bredden så rutan inte blir extremt bred på stor skärm */
-    margin: 0 auto;
-    /* Centrerar hela rutan på sidan */
-}
-
-#empty-state h2 {
-    margin-bottom: 1.5rem;
-}
-
-/* Länken tillbaka till startsidan, formgiven så den ser ut som en knapp */
-#empty-state a {
-    background-color: var(--accent-gron);
-    color: var(--bg-salvia);
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
     font-weight: bold;
-    display: inline-block;
-    /* Avgörande för att padding och marginaler ska fungera på en länk */
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0.4rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    color: black;
+    background-color: #5a6618;
 }
 
-#empty-state a:focus-visible {
-    outline: 3px solid var(--focus-orange);
-    outline-offset: 2px;
+article {
+    border: 1px solid black;
+    width: 50%;
+    text-align: center;
+    min-width: 0;
 }
 
-/* =========================================
-   6. SVAMPRUTNÄTET (CSS Grid)
-   ========================================= */
-
-/* Behållaren för alla svampkort (vår <section>) */
-#card-container {
-    display: grid;
-    /* auto-fit och minmax skapar automatiskt så många kolumner som får plats. 
-       Är skärmen smal (mobil) blir det 1 kolumn, är den bred blir det fler. */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    /* List-style är borttagen här eftersom vi bytt till section i HTML! */
+h2 {
+    padding: 0.5rem;
 }
 
-/* =========================================
-   7. SVAMPKORTEN (Utseende)
-   ========================================= */
-
-/* Själva kortet (<article> som vi skapar i JavaScript) */
-#card-container article {
-    background-color: var(--card-beige);
-    border: 1px solid var(--border-khaki);
-    border-radius: 8px;
-    overflow: hidden;
-    /* Ser till att bildens hörn klipps av snyggt i kortets rundning */
-    display: flex;
-    flex-direction: column;
-    /* Lägger bild, rubrik och text rakt under varandra */
+footer{
+    text-align: center;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+    color: #5a6618;
+    border-top: 1px solid black;
+    margin-top: 1rem;
 }
 
-/* Bilden inuti kortet. 
-   Lade till 'article' i selektorn för att garantera att den träffar rätt element. */
-#card-container article img {
-    width: 100%;
-    height: 200px !important;
-    object-fit: cover !important;
-    /* Beskär bilden snyggt så den fyller ytan utan att tryckas ihop */
-    border-bottom: 1px solid var(--border-khaki);
+@media (min-width: 768px) {
+
+    h1{
+        font-size: 3rem;
+        text-align: left;
+        padding-left: 1rem;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2.5rem;
+        list-style-type: none;
+    }
+
+    a{
+        font-size: 1.5rem;
+    }
+
+    a:hover {
+        background-color: #f0af30;
+        color: black;
+    }
 }
 
-/* Texten inuti kortet */
-#card-container h2,
-#card-container h3 {
-    padding: 1rem 1rem 0.5rem 1rem;
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-#card-container p {
-    padding: 0 1rem 1rem 1rem;
-    margin: 0;
-}
-
-/* =========================================
-   8. ETIKETTER (Badges för ätlighet)
-   ========================================= */
-
-/* Grundinställning för alla etiketter */
-.badge {
-    display: inline-block;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    /* Gör alla bokstäver till VERSALER som i din skiss */
-    margin: 0.5rem 1rem 1rem 1rem;
-    width: fit-content;
-    /* Gör så att etiketten bara blir så bred som texten inuti */
-}
-
-/* Modifiering för ÄTLIG (Grön ram och text) */
-.badge-atlig {
-    color: #2e7d32;
-    border: 1px solid #2e7d32;
-    background-color: transparent;
-}
-
-/* Modifiering för GIFTIG (Röd ram och text) */
-.badge-giftig {
-    color: #d32f2f;
-    border: 1px solid #d32f2f;
-    background-color: transparent;
-}
-
-/* Modifiering för DÖDLIGT GIFTIG (Röd fylld bakgrund, vit text) */
-.badge-dodlig {
-    color: #ffffff;
-    background-color: #d32f2f;
-    border: 1px solid #d32f2f;
-}
-
-/* Modifiering för BLANDAD (Orange ram och text) */
-.badge-blandad {
-    color: #e65100;
-    border: 1px solid #e65100;
-    background-color: transparent;
-}
