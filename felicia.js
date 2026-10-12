@@ -23,7 +23,7 @@ inte kan läsas in. */
 
 const somethingHappened = document.getElementById("somethingHappened");
 
-
+/*skapar en init funktion som anropar getList och sätter igång allting. Här lägger jag saker som ska köras direkt när sidan startar */
 function init() {
     getList();
 }
@@ -33,7 +33,7 @@ async function getList() { // bygger en funktion för att kunna hämta min json 
     try {
         const response = await fetch("speciellaEgenskaper.json"); // hämtar min json fil 
 
-        if (!response.ok) { // om filen som hämtas inte är OK, hoppar då ner till catch som skickar ut felmeddelande i console log. 
+        if (!response.ok) { // om filen som hämtas inte är OK, hoppar då ner till catch som skickar ut felmeddelande i console log, men också på webbsidan */ 
             throw new Error("Något gick fel vid hämtning");
         }
 
@@ -45,6 +45,7 @@ async function getList() { // bygger en funktion för att kunna hämta min json 
 
         displayList();
 
+     
     } catch (error) {
         console.error("Fel:", error);
         somethingHappened.textContent = "Något gick fel när sidan lästes in, försök igen senare.";
