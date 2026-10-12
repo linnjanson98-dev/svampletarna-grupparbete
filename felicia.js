@@ -1,18 +1,27 @@
-let allPairs = [];
-let index = 0;
+/* skapar en tom array som startvärde för allPairs. Använder let eftersom att värdet kommer att bytas ut längre ner i koden. 
+Arrayen är tom och kommer sedan kastas och bytas ut med data från json filen. 
+Men jag behöver deklarera den här så att något värde finns ifall det tar tid för filen att läsas in, så att koden kan fortsätta.*/
+let allPairs = []; 
+/* skapar en variabel som säger att index börjar räkna från 0, använder let eftersom varibeln ändras när jag klickar på nästa eller tillbakaknapparna. */
+let index = 0; 
 
-const leftRisk = document.getElementById("leftRisk");
-const leftTitle = document.getElementById("leftTitle");
-const leftList = document.getElementById("leftIdentify");
 
-const rightRisk = document.getElementById("rightRisk");
+/*hämtar element med id från min html fil, använder const eftersom elementet i min html fil aldrig kommer bytas ut, men innehållet i elementet kan ändras. */
+const leftRisk = document.getElementById("leftRisk"); 
+const leftTitle = document.getElementById("leftTitle"); 
+const leftList = document.getElementById("leftIdentify"); 
+
+const rightRisk = document.getElementById("rightRisk");  
 const rightTitle = document.getElementById("rightTitle");
-const rightList = document.getElementById("rightIdentify");
+const rightList = document.getElementById("rightIdentify"); 
 
-const prevButton = document.getElementById("prevButton");
-const nextButton = document.getElementById("nextButton");
+const prevButton = document.getElementById("prevButton"); 
+const nextButton = document.getElementById("nextButton"); 
 
-const somethingHappened = document.getElementById("somethingHappened");
+/* hämtar den tomma behållaren från min html & skriver sedan texten längre ner i js filen. Lägger texten i js eftersom den bara ska synas om något gör att json filen
+inte kan läsas in. */
+
+const somethingHappened = document.getElementById("somethingHappened");  
 
 
 
@@ -55,6 +64,8 @@ function displayList() {
         leftList.appendChild(li);
     });
 
+
+
     const rightPair = allPairs[index + 1];
     rightTitle.textContent = rightPair.par;
     rightRisk.textContent = rightPair.risk;
@@ -68,6 +79,9 @@ function displayList() {
         li.textContent = item;
         rightList.appendChild(li);
     });
+    nextButton.disabled = (index >= allPairs.length - 2); // knappen slutar funka när index är större eller lika med längden på allPairs - 2 eftersom jag vill visa två par.
+    prevButton.disabled = (index <= 0); // knappen slutar funka när index är 0 eller mindre,
+
 }
 
 function nextPair() {
