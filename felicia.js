@@ -18,6 +18,8 @@ const rightList = document.getElementById("rightIdentify");
 const prevButton = document.getElementById("prevButton");
 const nextButton = document.getElementById("nextButton");
 
+const pageNumber = document.getElementById("pageNumber");
+
 /* hämtar den tomma behållaren från min html & skriver sedan texten längre ner i js filen. Lägger texten i js eftersom den bara ska synas om något gör att json filen
 inte kan läsas in. */
 
