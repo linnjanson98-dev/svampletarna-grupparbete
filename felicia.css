@@ -10,6 +10,7 @@ h1 {
     padding-top: 0.5rem;
     padding-bottom: 1rem;
     color: #5a6618;
+    text-shadow: 1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 nav{
