@@ -216,7 +216,8 @@ async function init() {
 // Skriptet har defer i HTML, så sidan är redan inläst när vi kommer hit
 init();
 
-async function init() {
+// --stresstesta koden!--
+/*async function init() {
     try {
         // 1. Hämta alla svampar först
         allMushrooms = await loadMushrooms();
@@ -238,4 +239,4 @@ async function init() {
         console.error("Kunde inte visa sparade svampar:", error);
         showError();
     }
-}
+}*/
