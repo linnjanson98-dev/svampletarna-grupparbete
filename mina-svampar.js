@@ -74,7 +74,7 @@ function createTextElement(tagName, text) {
 // Vi tittar bara på hur texten börjar och bevarar er ursprungliga logik för Ä, Ö, Å.
 function getEdibility(edibleText) {
     if (!edibleText) return "Okänd"; // Säkerhetskoll om JSON-data skulle saknas
-    
+
     if (edibleText.startsWith("Ätlig")) {
         return "Ätlig";
     }
@@ -128,10 +128,10 @@ function createCard(svamp) {
 
     // Hämtar ätlighetsstatus från JSON med exakt rätt nyckel ("ätlig")
     const edibility = getEdibility(svamp["ätlig"]);
-    
+
     // Lägger först till färg-badgen
     article.appendChild(createBadge(edibility));
-    
+
     // Lägger sedan till hela den förklarande texten om ätlighet från JSON-filen (enligt Linns krav)
     article.appendChild(createTextElement("p", svamp["ätlig"]));
 
@@ -145,10 +145,10 @@ function createCard(svamp) {
 // Visar tomt läge eller knappen beroende på hur många kort det finns
 function updateVisibility(cardCount) {
     const hasCards = cardCount > 0;
-    
+
     emptyState.hidden = hasCards; // Tomt läge syns BARA när det är 0 kort (hasCards är false)
     clearButton.hidden = !hasCards; // Knappen syns BARA när det finns kort (hasCards är true)
-    errorMessage.hidden = true; 
+    errorMessage.hidden = true;
 }
 
 // Visar bara felmeddelandet (när svampar.json inte gick att hämta)
@@ -215,3 +215,28 @@ async function init() {
 
 // Skriptet har defer i HTML, så sidan är redan inläst när vi kommer hit
 init();
+
+// --stresstesta koden!--
+/*async function init() {
+    try {
+        // 1. Hämta alla svampar först
+        allMushrooms = await loadMushrooms();
+
+        // --- TILLFÄLLIGT TEST START ---
+        // 2. Ta de första 20 svamparnas latinska namn från JSON-filen och spara i localStorage
+        if (allMushrooms.length > 0) {
+            const nineMushrooms = allMushrooms
+                .slice(0, 20) // Begränsa till max 20 stycken
+                .map(svamp => svamp.latinskt_namn); // Plocka bara ut det latinska namnet
+
+            localStorage.setItem("savedMushrooms", JSON.stringify(nineMushrooms));
+        }
+        // --- TILLFÄLLIGT TEST SLUT ---
+
+        // 3. Rita ut svamparna
+        renderSavedMushrooms();
+    } catch (error) {
+        console.error("Kunde inte visa sparade svampar:", error);
+        showError();
+    }
+}*/
