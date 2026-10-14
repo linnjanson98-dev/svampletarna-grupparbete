@@ -33,16 +33,18 @@
 body {
     background-color: #d9d2b8;
     color: var(--text-brun);
-    font-family: serif;     
-    line-height: 1.6;       
-    display: flex;          
-    flex-direction: column; 
-    min-height: 100vh;      
+    font-family: serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* --- Typografi & Rubriker --- */
-h1, h2, h3 {
-    margin-bottom: 1rem;    
+h1,
+h2,
+h3 {
+    margin-bottom: 1rem;
 }
 
 h1 {
@@ -63,47 +65,47 @@ nav {
 }
 
 nav ul {
-    list-style-type: none;  
+    list-style-type: none;
 }
 
 a {
-    display: block;         
+    display: block;
     text-align: center;
-    text-decoration: none;  
+    text-decoration: none;
     font-weight: bold;
     border: 1px solid black;
-    border-radius: 5px;     
+    border-radius: 5px;
     margin: 0.4rem;
     font-size: 1rem;
     padding: 0.2rem 2rem;
     color: black;
     background-color: #5a6618;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 a:hover,
 a:active {
-    background-color: #f0af30; 
+    background-color: #f0af30;
 }
 
 /* --- Huvudinnehåll --- */
 main {
     padding: 1.5rem;
-    flex-grow: 1;           
+    flex-grow: 1;
 }
 
 main header {
     display: flex;
-    flex-wrap: wrap;        
-    justify-content: space-between; 
-    align-items: center;    
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 2rem;
-    gap: 1rem;              
+    gap: 1rem;
 }
 
 article {
     border: 1px solid black;
-    width: 50%;
+    width: 100%;
     text-align: center;
     min-width: 0;
 }
@@ -114,18 +116,18 @@ article {
     border: none;
     padding: 0.8rem 1.2rem;
     font-size: 1rem;
-    cursor: pointer;        
+    cursor: pointer;
     border-radius: 4px;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 #clear-button:hover {
-    background-color: #4a5736; 
+    background-color: #4a5736;
 }
 
 #clear-button:focus-visible {
-    outline: 3px solid var(--focus-orange); 
+    outline: 3px solid var(--focus-orange);
     outline-offset: 2px;
 }
 
@@ -138,8 +140,8 @@ article {
     padding: 3rem 1.5rem;
     text-align: center;
     border-radius: 8px;
-    max-width: 600px;       
-    margin: 0 auto;         
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 #empty-state h2 {
@@ -153,7 +155,7 @@ article {
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
     font-weight: bold;
-    display: inline-block;  
+    display: inline-block;
     transition: background-color 0.3s ease;
 }
 
@@ -172,7 +174,7 @@ article {
 #card-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;            
+    gap: 1.5rem;
 }
 
 /* =========================================
@@ -182,21 +184,21 @@ article {
     background-color: var(--card-beige);
     border: 1px solid var(--border-khaki);
     border-radius: 8px;
-    overflow: hidden;       
+    overflow: hidden;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 #card-container article img {
     width: 100%;
     height: 200px;
-    object-fit: cover;      
+    object-fit: cover;
     border-bottom: 1px solid var(--border-khaki);
 }
 
 #card-container h2,
 #card-container h3 {
-    padding: 1rem 1rem 0.5rem 1rem;
+    padding: 0.1rem 1rem 0rem 1rem;
     font-size: 1.3rem;
     margin: 0;
 }
@@ -215,9 +217,11 @@ article {
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: bold;
-    text-transform: uppercase;  
+    text-transform: uppercase;
     margin: 0.5rem 1rem 1rem 1rem;
-    width: fit-content;         
+    margin-top: auto;
+    /*width: fit-content;*/
+    /*--- Jag vill att tar hele utymme ---*/
 }
 
 .badge-atlig {
@@ -263,12 +267,12 @@ footer {
     }
 
     nav ul {
-        display: flex;          
+        display: flex;
         justify-content: center;
-        gap: 2.5rem;            
+        gap: 2.5rem;
     }
 
     a {
-        font-size: 1.5rem;      
+        font-size: 1.5rem;
     }
 }
