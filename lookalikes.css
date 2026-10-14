@@ -1,9 +1,13 @@
+/* sätter standarden för hela sidan. Sätter margin & padding till 0 & med border box säger jag att allt ska räknas in i storleken jag sätter. */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/*Använder display flex så att så att kan använda flex 1 i main. 
+Använder sedan flex direction så att header, footer och main hamnar under varandra.
+Använder också dvh istället för vh eftersom jag ville att det skulle se bra ut på mobil med, behövde skrolla neråt på mobilen även fast det egentligen fick plats.  */
 body {
     display: flex;
     flex-direction: column;
@@ -11,6 +15,7 @@ body {
     background-color: #d9d2b8;
 }
 
+/* Säger till att main att ta allt utrymme som blir över & trycker då ner footern längst ner.  */
 main {
     flex: 1;
     display: flex;
@@ -18,12 +23,11 @@ main {
 }
 
 nav {
-    /*gemensam*/
     margin-bottom: 1rem;
 }
 
+/*Tar bort punkterna som kommer från listan */
 nav ul {
-    /*gemensam*/
     list-style-type: none;
 }
 
@@ -36,6 +40,8 @@ a {
     border-radius: 8px;
 }
 
+/* Kör en block så att det slutar bete sig som inline & jag kan då använda padding & margin, samt göra hela knappen tryckbar.
+Tar text-decoration för att få bort sträcket under länken. */
 a {
     display: block;
     text-align: center;
@@ -45,6 +51,7 @@ a {
     padding: 0.5rem 1rem;
 }
 
+/* Texten på mina knappar hade annat typsnitt, men ville att de skulle ha samma som allt annat, så körde inherit.*/
 button {
     padding: 0.5rem 0.7rem;
     margin-top: 1rem;
@@ -60,6 +67,7 @@ h3 {
     text-align: center;
 }
 
+/*La en liten skugga vid överskriften.*/
 h1,
 h2 {
     text-shadow: 1px 1px 0 #000;
@@ -82,12 +90,13 @@ section ul {
     list-style-type: none;
 }
 
+/* Ville att texten och knappan skulle ligga fint, tyckte inte det såg bra ut med center, så valde baseline så att den går efter undersidan av texten.
+Ville att mina knappar skulle hamna över artiklarna på mobilen och kör då order -1.*/
 div {
     display: flex;
     justify-content: center;
     gap: 2.5rem;
     align-items: baseline;
-    /*blev inte snyggt med center, så valde baseline*/
     order: -1;
 }
 
@@ -114,7 +123,7 @@ div {
     margin-top: 1rem;
 }
 
-/* behövde skrolla på mobilen, så la till overflow-wrap så att datorn bröt texten tidigare & hyphens så att den la till bindestreck*/
+/* behövde skrolla sidled på mobilen, så la till overflow-wrap så att datorn bröt texten tidigare & hyphens så att den la till bindestreck*/
 article {
     border-radius: 8px;
     overflow-wrap: anywhere;
@@ -126,6 +135,7 @@ span {
     color: #5a6618;
 }
 
+/* Om man inte kan trycka på en knapp så blir knappen lite blekar, halvt genomskinlig.*/
 button:disabled {
     opacity: 0.5;
 }
@@ -152,25 +162,25 @@ button:disabled {
     }
 
     nav ul {
-        /*gemensam*/
         display: flex;
         justify-content: center;
         gap: 2.5rem;
     }
 
+    /*När man tar musen över navigeringen och mina knappar så kommer det gula lite långsammar & även textfärgen*/
     a,
     button {
-        /*gemensam*/
         transition: background-color 0.3s, color 0.3s;
     }
 
+    /* ville att textfärgen skulle ändras så att det blev bättre för ögat. Tyckte att när man hade det gula och sen beiga så blev det tufft*/
     a:hover,
     button:hover:not(:disabled) {
-        /*gemensam*/
         background-color: #f0af30;
         color: black;
     }
 
+    /*Gör så att muspekaren ser ut som ett stoppmärke när man tar den över en knapp man inte kan trycka på */
     button:disabled {
         cursor: not-allowed;
     }
@@ -179,26 +189,32 @@ button:disabled {
         font-size: 1.5rem;
     }
 
+    /*ändrar så att muspekaren blir en liten hand när man åker över knappen istället för en triangel. Satta också min-width på knapparna så att dom blev lika stora.*/
+
     button {
         cursor: pointer;
         font-size: 1.2rem;
         min-width: 6rem;
     }
 
+    /*Sätter flex på större skärmar så det hamnar på rad istället för under varandra som på mobil, sätter även min-height så att alla korten blir lika höga på alla sidor. */
     section {
         display: flex;
         min-height: 23.5rem;
         gap: 2.5rem;
     }
 
+    /* sätter flex 1 så att båda articles tar lika mycket plats */
     article {
         flex: 1;
     }
 
+    /*sätter tillbaka så att knapparna hamnar under korten istället för över */
     div {
         order: 0;
     }
 
+    /*Säger att main ska ta 100% av utrymmet, allt ska ligga i mitten, men max är 1200px. Tyckte det blev konstigt på min stora skärm kontra min lilla. */
     main {
         width: 100%;
         margin: 0 auto;

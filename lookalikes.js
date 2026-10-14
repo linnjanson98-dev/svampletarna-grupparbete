@@ -5,7 +5,6 @@ let allPairs = [];
 /* skapar en variabel som säger att index börjar räkna från 0, använder let eftersom variabeln ändras när jag klickar på nästa eller tillbakaknapparna. */
 let index = 0;
 
-
 /*hämtar element med id från min html fil, använder const eftersom elementet i min html fil aldrig kommer bytas ut, men innehållet i elementet kan ändras. */
 const leftRisk = document.getElementById("leftRisk");
 const leftTitle = document.getElementById("leftTitle");
@@ -30,7 +29,6 @@ function init() {
     getList();
 }
 
-
 /*bygger en funktion för att kunna hämta min json fil & göra om till JavaScript objekt, använder mig av async så att jag kan använda await. 
 Detta gör att sidan inte fryser under tiden som filerna hämtas in. 
 Hämtar sedan json filen med hjälp av fetch och använder await för att säga till datorn att vänta tills allt är hämtat.
@@ -44,26 +42,19 @@ Om något annat kraschar i funktionen getList, så som fetch eller displayList, 
 async function getList() {
     try {
         const response = await fetch("speciellaEgenskaper.json");
-
         if (!response.ok) {
             throw new Error("Något gick fel vid hämtning");
         }
-
-
         const data = await response.json();
-
         allPairs = data.särskiljande_egenskaper;
 
-
         displayList();
-
 
     } catch (error) {
         console.error("Fel:", error);
         somethingHappened.textContent = "Något gick fel när sidan lästes in, försök igen senare.";
     }
 }
-
 
 function displayList() {
     /* hämtar ett par från allPairs arrayen med hjälp av index. Jag använder sedan mina element från html filen och lägger in texten i dom så att det
@@ -120,10 +111,7 @@ function showPageNumber() {
     const totalPages = Math.ceil(allPairs.length / 2);
 
     pageNumber.textContent = "Sida " + currentPage + " av " + totalPages;
-
 }
-
-
 
 /* bygger en funktion som visar två stycken par från json filen åt gången, när man klickar på knappen nextButton så kommer index öka
 med 2 och visa nästa två par. Om index är lika med eller större än längden på allPairs minus 2 så kommer knappen inte fungera längre, 
