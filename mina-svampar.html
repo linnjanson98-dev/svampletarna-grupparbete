@@ -12,43 +12,39 @@
 <body>
     <header>
         <h1>Svampletarna</h1>
-
-        <!-- nav = navigationsmeny. aria-label ger menyn ett namn för skärmläsare -->
         <nav aria-label="Huvudmeny">
             <ul>
                 <li><a href="index.html">Alla Svampar</a></li>
-                <!-- aria-current="page" markerar att det är den här sidan vi är på just nu -->
                 <li><a href="mina-svampar.html" aria-current="page">Sparade Svampar</a></li>
-                <!-- svampguide.html är en platshållare tills Felicia har bestämt filens namn -->
                 <li><a href="svampguide.html">Svampguide</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <!-- Huvud för just det här innehållet: rubrik och knapp. Flexbox lägger dem på en rad i CSS. -->
         <header>
             <h1>Mina svampar</h1>
-
-            <!-- type="button": knappen skickar inget formulär. id används av JavaScript senare. -->
-            <button type="button" id="clear-button">Töm sparade svampar</button>
+            <!-- Knappen är dold från start. JavaScript visar den när det finns svampar. -->
+            <button type="button" id="clear-button" hidden>Töm sparade svampar</button>
         </header>
 
-        <!-- Behållare för korten. 
-             Ändrad från en lista (<ul>) till en sektion (<section>) för att koden ska vara giltig HTML. 
-             JavaScript lägger in ett <article> per sparad svamp här inuti. -->
-        <section id="card-container"></section>
+        <!-- Dolt felmeddelande för fetch -->
+        <p id="error-message" role="alert" hidden>Något gick fel när svamparna skulle hämtas...</p>
 
-        <!-- Visas när inga svampar är sparade. JavaScript gömmer och visar blocket. -->
-        <section id="empty-state">
+        <!-- Semantisk sektion för korten med en osynlig rubrik för skärmläsare -->
+        <section id="card-container" aria-label="Sparade svampar">
+            <h2 class="sr-only">Lista med sparade svampar</h2>
+        </section>
+
+        <!-- Visas när inga svampar är sparade -->
+        <section id="empty-state" hidden>
             <h2>Du har inte hittat några svampar än</h2>
             <p><a href="index.html">Till svampar</a></p>
         </section>
     </main>
 
-    <!-- Sidfot -->
     <footer>
-        <p>Grupp 4: Zouhir</p>
+        <p>Grupp 4 WU26 - Linn, Felicia, Zouhir</p>
     </footer>
 </body>
 
