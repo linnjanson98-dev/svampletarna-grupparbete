@@ -5,7 +5,6 @@ function init() {
     //Ladda in sidan och starta 
     sectionRef = document.querySelector("section");
     fetchData();
-    //localStorage.clear();
 }
 
 window.onload = init;
@@ -46,9 +45,9 @@ function createArticle(data) {
 
         let edibilityMushroom = createElement("p", svamp.ätlig);
 
-        let badge = document.createElement("span");
+        let badge = document.createElement("p");
         edibleBadge(svamp, badge);
-        edibilityMushroom.prepend(badge);
+        article.appendChild(badge);
         article.appendChild(edibilityMushroom);
 
         let locationMushroom = createElement("p", svamp.fyndplats);
@@ -106,13 +105,13 @@ function edibleBadge(svamp, badge) {
     const edible = svamp.ätlig;
 
     if (edible.startsWith("Ätlig")) {
-        badge.textContent = "✔ ";
+        badge.textContent = "✔ Ätlig ";
         badge.classList.add("edible"); 
     } else if (edible.startsWith("Dödligt giftig")) {
-        badge.textContent = "⚠ ";
+        badge.textContent = "⚠ Dödligt Giftig";
         badge.classList.add("deadly");
     } else if (edible.startsWith("Giftig")) {
-        badge.textContent = "⚠ ";
+        badge.textContent = "⚠ Giftig";
         badge.classList.add("poisonous");
     }
 }
