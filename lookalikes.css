@@ -86,13 +86,13 @@ footer {
     margin-top: 1rem;
 }
 
-section ul {
+.cards ul {
     list-style-type: none;
 }
 
 /* Ville att texten och knappan skulle ligga fint, tyckte inte det såg bra ut med center, så valde baseline så att den går efter undersidan av texten.
 Ville att mina knappar skulle hamna över artiklarna på mobilen och kör då order -1.*/
-div {
+.page-nav {
     display: flex;
     justify-content: center;
     gap: 2.5rem;
@@ -198,7 +198,7 @@ button:disabled {
     }
 
     /*Sätter flex på större skärmar så det hamnar på rad istället för under varandra som på mobil, sätter även min-height så att alla korten blir lika höga på alla sidor. */
-    section {
+    .cards {
         display: flex;
         min-height: 23.5rem;
         gap: 2.5rem;
@@ -210,7 +210,7 @@ button:disabled {
     }
 
     /*sätter tillbaka så att knapparna hamnar under korten istället för över */
-    div {
+    .page-nav {
         order: 0;
     }
 
