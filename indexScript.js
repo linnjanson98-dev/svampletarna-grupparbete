@@ -84,7 +84,7 @@ function saveArticleButton(svamp, article) {
     saveButton.addEventListener("click", () => {
         if (!checkIfSaved(svamp)) {
             let savedMushrooms = JSON.parse(localStorage.getItem("savedMushrooms")) || [];
-            savedMushrooms.push(svamp);
+            savedMushrooms.push(svamp.latinskt_namn);
             localStorage.setItem("savedMushrooms", JSON.stringify(savedMushrooms));
             saveButton.textContent = "Sparad";
         }
