@@ -30,13 +30,14 @@ function init() {
 }
 
 /*bygger en funktion för att kunna hämta min json fil & göra om till JavaScript objekt, använder mig av async så att jag kan använda await. 
-Detta gör att sidan inte fryser under tiden som filerna hämtas in. 
+Detta gör att sidan inte fryser under tiden som filen hämtas in. 
 Hämtar sedan json filen med hjälp av fetch och använder await för att säga till datorn att vänta tills allt är hämtat.
-Om filen som hämtas inte är OK, hoppar då ner till catch som skickar ut felmeddelande i console log, men också på webbsidan.
+Om filen som hämtas inte är OK, hoppar den då ner till catch som skickar ut felmeddelande i console log, men också på webbsidan.
 Gör sedan om json filen till ett JavaScript object, använder await så att datorn väntar tills all text är omgjord. 
 Hämtar sedan ut särskiljande egenskaper från json filen och ersätter den tomma arrayen allPairs med nytt innehåll.
 Anropar sedan funktionen displayList.
-Om något annat kraschar i funktionen getList, så som fetch eller displayList, då fångar catch det med. Så allt fel som sker i getList, fångas av catch. 
+Om något annat kraschar i funktionen getList, så som fetch eller displayList, då fångar catch det med. Så alla fel som sker i getList, fångas av catch. 
+Eftersom jag skrivit "laddar..." i mina h3 rubriker så vill jag tömma dom om något skulle gå fel vid inläsning av json filen.
 */
 
 async function getList() {
@@ -53,6 +54,8 @@ async function getList() {
     } catch (error) {
         console.error("Fel:", error);
         somethingHappened.textContent = "Något gick fel när sidan lästes in, försök igen senare.";
+        rightTitle.textContent = "";
+        leftTitle.textContent = "";
     }
 }
 
@@ -61,7 +64,8 @@ function displayList() {
     visas på hemsidan.  
     Jag hämtar texten från json filen som jag hämtat i funktionen getList. Detta med hjälp av par, risk och särskiljande. Jag loopar sedan igenom 
     arrayen med särskiljande med hjälp av en forEach loop och skapar en lista med varje punkt i arrayen. Jag lägger till appendChild så att varje
-    punkt läggs till sist i listan.*/
+    punkt läggs till sist i listan.
+    Tömmer leftList varenda gång, då listan annars bara skulle byggas på. Behöver inte tömma rubriken och risken eftersom dom ersätts varje gång.*/
     leftList.textContent = "";
     const leftPair = allPairs[index];
     leftTitle.textContent = leftPair.par;
@@ -105,12 +109,12 @@ function displayList() {
 /* skapar en funktion så att det finns en sidnumrering. Jag vill att varje sida ska visa 2 par & därav delar jag index med 2, men eftersom index börjar på 0 
 så behöver jag plussa på 1 för korrekt nummer i sidnumreringen. Om det skulle komma in udda antal par i json filen så använder jag mig av Math.ceil som avrundar uppåt.
 Så om det skulle komma in ett par till så skulle det bli 11 par, sista sidnumreringen skulle då säga 5.5 (11/2=5.5) vilket då inte stämmer eftersom det är 6 sidor. 
-Skriver sedan ut det på webbsidan i min tomma <span> från html med hjälp av textcontent.*/
+Skriver sedan ut det på webbsidan i min tomma <span> från html med hjälp av textContent.*/
 function showPageNumber() {
     const currentPage = index / 2 + 1;
     const totalPages = Math.ceil(allPairs.length / 2);
 
-    pageNumber.textContent = "Sida " + currentPage + " av " + totalPages;
+    pageNumber.textContent = `Sida ${currentPage} av ${totalPages}`;
 }
 
 /* bygger en funktion som visar två stycken par från json filen åt gången, när man klickar på knappen nextButton så kommer index öka
