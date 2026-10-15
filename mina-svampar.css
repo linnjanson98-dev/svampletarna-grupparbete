@@ -78,14 +78,15 @@ a {
     margin: 0.4rem;
     font-size: 1rem;
     padding: 0.2rem 2rem;
-    color: black;
+    color: #d9d2b8;
     background-color: #5a6618;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a:hover,
 a:active {
     background-color: #f0af30;
+    color: black;
 }
 
 /* --- Huvudinnehåll --- */
@@ -181,7 +182,7 @@ article {
    7. SVAMPKORTEN (Utseende)
    ========================================= */
 #card-container article {
-    background-color: var(--card-beige);
+    background-color: rgb(187, 197, 132);
     border: 1px solid var(--border-khaki);
     border-radius: 8px;
     overflow: hidden;
@@ -206,6 +207,7 @@ article {
 #card-container p {
     padding: 0 1rem 1rem 1rem;
     margin: 0;
+    font-size: 1.1rem;
 }
 
 /* =========================================
