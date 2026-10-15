@@ -1,38 +1,46 @@
 let sectionRef;
-const savedMushrooms = [];
 
 function init() {
     //Ladda in sidan och starta 
     sectionRef = document.querySelector("section");
+    let jsonError = document.getElementById("jsonError");
     fetchData();
 }
 
 window.onload = init;
 
 async function fetchData() {
-    //Hämta svampar.json
+    /*Hämta svampar.json, try catch för att kolla så att allting fungerar som det ska när datan hämtas annars vissas ett errormeddelande
+        if(!response.ok) fångar det som fetch inte gör, t.ex. 404 not found, och skickar ett errormeddelande.
+    */
     try {
         const response = await fetch("svampar.json");
+        if (!response.ok) {
+            throw new Error("Kunde inte hämta data");
+        }
         const data = await response.json();
         createArticle(data);
     }
     catch (error) {
         console.error("Error fetching data:", error);
+        jsonError.textContent = "Det gick inte att ladda in sidan. Försök igen senare.";
     }
 
 }
 
 function createArticle(data) {
-    //Loopa svampar.json och skapa artiklar för varje svamp
-    //Möjligtvis en function för att skapa elementen? 
-    //Även add event listeners för att kunna spara svampar på sin sida
+
+    /*Loopa svampar.json och skapa artiklar för varje svamp
+      Möjligtvis en function för att skapa elementen? 
+      Även add event listeners för att kunna spara svampar på sin sida*/
+
     data.svampar.forEach(svamp => {
         const article = document.createElement("article");
         //Skapa element för svampens namn, bild, beskrivning och fyndplats.
-        let swedishName = createElement("h2", svamp.svenskt_namn);
+        let swedishName = createElement("h3", svamp.svenskt_namn);
         article.appendChild(swedishName);
 
-        let latinName = createElement("h2", svamp.latinskt_namn);
+        let latinName = createElement("h3", svamp.latinskt_namn);
         article.appendChild(latinName);
 
         let imageMushroom = document.createElement("img");
@@ -45,13 +53,14 @@ function createArticle(data) {
 
         let edibilityMushroom = createElement("p", svamp.ätlig);
 
+        //Här skapas badges att sätta på korten med en function.
         let badge = document.createElement("p");
         edibleBadge(svamp, badge);
         article.appendChild(badge);
         article.appendChild(edibilityMushroom);
 
         let locationMushroom = createElement("p", svamp.fyndplats);
-        locationMushroom.textContent = "➣ " + locationMushroom.textContent;
+        locationMushroom.textContent = "Fyndplats: " + locationMushroom.textContent;
         article.appendChild(locationMushroom);
 
         saveArticleButton(svamp, article);
@@ -59,6 +68,7 @@ function createArticle(data) {
     });
 }
 
+//En funktion för att skapa element för att minska mängden repeterad kod i createArticle()
 function createElement(elementType, textContent) {
     const element = document.createElement(elementType);
     element.textContent = textContent;
@@ -84,7 +94,7 @@ function saveArticleButton(svamp, article) {
     saveButton.addEventListener("click", () => {
         if (!checkIfSaved(svamp)) {
             let savedMushrooms = JSON.parse(localStorage.getItem("savedMushrooms")) || [];
-            savedMushrooms.push(svamp);
+            savedMushrooms.push(svamp.latinskt_namn);
             localStorage.setItem("savedMushrooms", JSON.stringify(savedMushrooms));
             saveButton.textContent = "Sparad";
         }
@@ -94,7 +104,7 @@ function saveArticleButton(svamp, article) {
 //Kollar ifall en svamp är sparad eller inte, använda samma kod på två ställen så skapade en funktion istället. 
 function checkIfSaved(svamp) {
     let savedMushrooms = JSON.parse(localStorage.getItem("savedMushrooms")) || [];
-    return (savedMushrooms.some(saved => saved.latinskt_namn === svamp.latinskt_namn))
+    return (savedMushrooms.some(saved => saved === svamp.latinskt_namn));
     //.some returnerar redan "true" eller "false" så behöver inte if-sats här utan kan returnera direkt.
 }
 /*En function för att sätta badges framför ätlighets-texten för att göra tydligt om det är ätligt eller inte
@@ -106,7 +116,7 @@ function edibleBadge(svamp, badge) {
 
     if (edible.startsWith("Ätlig")) {
         badge.textContent = "✔ Ätlig ";
-        badge.classList.add("edible"); 
+        badge.classList.add("edible");
     } else if (edible.startsWith("Dödligt giftig")) {
         badge.textContent = "⚠ Dödligt Giftig";
         badge.classList.add("deadly");
