@@ -24,6 +24,8 @@ h1, h2 {
     color: #5a6618;
     text-shadow: 1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 0 #000;
 }
+
+
 /* Ger lite mellanrum mellan nav och h2*/
 nav {
     margin-bottom: 2rem;
@@ -107,12 +109,12 @@ article p:last-of-type {
 }
 
 .deadly {
-    color: red;
-    border: 1px solid red;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
 }
 
 .poisonous {
-    color: red;
+    color: #d32f2f;
 }
 
 /*Gör button till block för att kunna ändra placering med padding och margin. */
@@ -131,18 +133,31 @@ footer {
     text-align: center;
     padding-bottom: 0.5rem;
     padding-top: 1rem;
-    color: #5a6618;
     border: 1px solid #332e18;
     margin-top: 1rem;
 }
 
+footer p{
+    color: #5a6618;
+}
+
+a[aria-current="page"] {
+    background-color: #f0af30;
+    color: black;
+}
 
 
 /*Ändringar för störra skärmar, typ dator*/
 @media (min-width: 768px) {
 
+    main{
+        width: 100%;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
     
     h1 {
+        padding-top: 1.1rem;
         padding-left: 1rem;
         font-size: 3rem;
         text-align: left;
@@ -172,8 +187,7 @@ footer {
     200px för att förhindra att squish och att element hamnar utanför sina container, gjorde gap i % även för att hjälpa förhindra detta
     */
     section {
-        margin-left: 5rem;
-        margin-right: 5rem;
+       
         display: grid;
         grid-template-columns: repeat(3, minmax(200px, 1fr));
         column-gap: 3%;
@@ -185,7 +199,7 @@ footer {
     h2{
         font-size: 2.5rem;
         text-align: left;
-        margin-left: 7.8rem;
+        margin-left: 2.3rem;
         padding-top: 2rem;
         padding-bottom: 0;
     }
