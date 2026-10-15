@@ -109,6 +109,12 @@ Ville att mina knappar skulle hamna över artiklarna på mobilen och kör då or
     hyphens: auto;
 }
 
+.cards {
+    display: flex; 
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .risk {
     font-size: 1.5rem;
     font-weight: bold;
@@ -195,11 +201,12 @@ a[aria-current="page"] {
         min-width: 6rem;
     }
 
-    /*Sätter flex på större skärmar så det hamnar på rad istället för under varandra som på mobil, sätter även min-height så att alla korten blir lika höga på alla sidor. */
+    /*Sätter flex-direction row eftersom mobil har flex-direction column, behöver inte använda display: flex här eftersom den redan finns på mobil. 
+    Sätter även min-height så att alla korten blir lika höga på alla sidor. */
     .cards {
-        display: flex;
         min-height: 23.5rem;
         gap: 2.5rem;
+        flex-direction: row;
     }
 
     /* sätter flex 1 så att båda korten tar lika mycket plats */
