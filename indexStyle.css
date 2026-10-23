@@ -72,7 +72,7 @@ h3 {
     color: #332e18;
 }
 
-article h3:last-of-type {
+h4 {
     font-size: 1.2rem;
     /*margin-bottom: 1rem;*/
 }

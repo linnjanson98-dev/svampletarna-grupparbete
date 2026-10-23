@@ -40,7 +40,7 @@ function createArticle(data) {
         let swedishName = createElement("h3", svamp.svenskt_namn);
         article.appendChild(swedishName);
 
-        let latinName = createElement("h3", svamp.latinskt_namn);
+        let latinName = createElement("h4", svamp.latinskt_namn); //!!!!!!!!!!!!!!!!! KOMPLETERING ÄNDRADE RUBRIKSNIVÅ !!!!!!!!!!!!!!!!!
         article.appendChild(latinName);
 
         let imageMushroom = document.createElement("img");
