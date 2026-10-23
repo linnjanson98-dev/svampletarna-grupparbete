@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mina svampar – Svampletarna</title>
+    <title>Svampletarna</title>
     <link rel="stylesheet" href="mina-svampar.css">
     <script src="mina-svampar.js" defer></script>
 </head>
@@ -23,7 +23,7 @@
 
     <main>
         <header>
-            <h1>Mina svampar</h1>
+            <h2>Mina svampar</h2>
             <!-- Knappen är dold från start. JavaScript visar den när det finns svampar. -->
             <button type="button" id="clear-button" hidden>Töm sparade svampar</button>
         </header>
@@ -33,12 +33,12 @@
 
         <!-- Semantisk sektion för korten med en osynlig rubrik för skärmläsare -->
         <section id="card-container" aria-label="Sparade svampar">
-            <h2 class="sr-only">Lista med sparade svampar</h2>
+            <h3 class="sr-only">Lista med sparade svampar</h3>
         </section>
 
         <!-- Visas när inga svampar är sparade -->
         <section id="empty-state" hidden>
-            <h2>Du har inte hittat några svampar än</h2>
+            <h4>Du har inte hittat några svampar än</h4>
             <p><a href="index.html">Till svampar</a></p>
         </section>
     </main>

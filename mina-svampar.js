@@ -73,19 +73,17 @@ function createTextElement(tagName, text) {
 // Fältet "ätlig" är en lång text, till exempel "Ätlig – en av de bästa...".
 // Vi tittar bara på hur texten börjar och bevarar er ursprungliga logik för Ä, Ö, Å.
 function getEdibility(edibleText) {
-    if (!edibleText) return "Okänd"; // Säkerhetskoll om JSON-data skulle saknas
+    if (!edibleText) return "Okänd"; 
 
     if (edibleText.startsWith("Ätlig")) {
         return "Ätlig";
-    }
-    if (edibleText.startsWith("Dödligt giftig")) {
+    } else if (edibleText.startsWith("Dödligt giftig")) {
         return "Dödligt giftig";
-    }
-    if (edibleText.startsWith("Giftig")) {
+    } else if (edibleText.startsWith("Giftig")) {
         return "Giftig";
+    } else {
+        return "Okänd";
     }
-    // Reservläge: vi påstår aldrig att en okänd svamp är ätlig
-    return "Okänd";
 }
 
 // Skapar etiketten med symbol och text (aldrig bara färg)
